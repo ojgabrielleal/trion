@@ -1,22 +1,25 @@
+const date = new Date();
+$('.trion-bar-text').text(`Hoje, dia ${date.getDate()} de ${date.toLocaleString('pt-br', { month: 'long' })}, estamos finalizando a entrada de novos membros no copy trade da TRION.`);
+
+
+// stastisc 
 $(function() {
-  const date = new Date();
-  const text = `Hoje, dia ${date.getDate()} de ${date.toLocaleString('pt-br', { month: 'long' })}, estamos finalizando a entrada de novos membros no copy trade da TRION.`;
-  
-  const $bar = $('.trion-bar');
-  const $span = $('<span>').addClass('effect-typed-text');
-  const $cursor = $('<span>').addClass('effect-typing-cursor');
-  $bar.append($span).append($cursor);
-  
-  let i = 0;
-  const speed = 40;
-  
-  function typeChar() {
-    if (i < text.length) {
-      $span.append(text[i]);
-      i++;
-      setTimeout(typeChar, speed);
-    }
-  }
-  
-  typeChar();
+	function randomAbove(min) {
+		return Math.floor(Math.random() * 9500) + (min + 1);
+	}
+
+	function updateStatistic() {
+		const $strong = $('.trion-statistic-data strong');
+		if ($strong.length === 0) return;
+		const num = randomAbove(500);
+		$strong.text(num.toLocaleString('pt-BR'));
+		// usar animate.css: adiciona classes e remove após término da animação
+		$strong.addClass('animate__animated animate__pulse animate__faster');
+		$strong.one('animationend webkitAnimationEnd', function() {
+			$(this).removeClass('animate__animated animate__pulse animate__faster');
+		});
+	}
+
+	updateStatistic();
+	setInterval(updateStatistic, 30000);
 });
