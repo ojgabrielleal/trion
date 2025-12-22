@@ -1,255 +1,238 @@
 @import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&display=swap');
 
 :root {
-    --blue-primary: rgb(7, 7, 32);
-    --white-primary: #ededed;
-    --white-secondary: #bfbfbf;
-    --green-primary: #1fe426;
+	--blue-primary: rgb(7, 7, 32);
+	--white-primary: #ededed;
+	--white-secondary: #bfbfbf;
+    --white-tertiary: #ffffff;
+	--green-primary: #1fe426;
 }
 
-*{
-    box-sizing: border-box;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    font-family: "Darker Grotesque", sans-serif;
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-family: "Darker Grotesque", sans-serif;
 }
 
 body {
-    position: relative;
-    margin: 0;
-    padding: 0;
+	min-height: 100vh;
+	position: relative;
 }
 
+/* Background */
 body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(../img/background.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    filter: brightness(20%);
-    z-index: -1;
+	content: "";
+	position: fixed;
+	inset: 0;
+	background: url(../img/background.png) center / cover no-repeat;
+	filter: brightness(20%);
+	z-index: -1;
 }
 
+/* HEADER */
 .trion-header .trion-bar {
-    width: 100%;
-    height: 3.5rem;
-    background-color: var(--blue-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	width: 100%;
+	min-height: 3.5rem;
+	background-color: var(--blue-primary);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5rem 1rem;
+}
+
+.trion-bar-text {
     padding-bottom: 0.4rem;
+	color: var(--white-primary);
+	font-size: 1.1rem;
+	font-weight: 500;
+	text-align: center;
 }
 
-.trion-header .trion-bar .trion-bar-text {
-    color: var(--white-primary);
-    font-size: 1.2rem;
-    font-weight: 500;
+/* CONTAINER */
+.trion-container {
+	width: 90%;
+	max-width: 50rem;
+	margin: 4rem auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
 }
 
-.trion-container{
-    width: 90%;
-    height: 100vh;
-    max-width: 50rem;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+/* LOGO */
+.trion-logo {
+	width: 8rem;
 }
 
-.trion-container .trion-logo img{
+.trion-logo img {
+	width: 100%;
+	display: block;
+}
+
+/* TEXTO PRINCIPAL */
+.trion-message {
+	color: var(--white-primary);
+	text-align: center;
+	font-size: 2.8rem;
+	font-weight: 600;
+	line-height: 1.1;
+	text-shadow: 0 0 17px rgba(0, 0, 0, 0.3);
+}
+
+.trion-message strong {
+	color: var(--green-primary);
+	font-weight: 800;
+}
+
+/* SUBTEXTO */
+.trion-submessage {
+	margin-top: 2rem;
+	font-size: 1.2rem;
+	font-weight: 600;
+	text-align: center;
+	color: var(--white-primary);
+}
+
+/* ESTATÍSTICAS */
+.trion-statistic {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	margin-top: 1rem;
+	flex-wrap: wrap;
+}
+
+.trion-statistic-data {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.trion-statistic-data img {
+	width: 1.2rem;
+	filter: invert(99%);
+}
+
+.trion-statistic-data strong {
+	color: var(--white-primary);
+	font-size: 1.2rem;
+	font-weight: 600;
+}
+
+.trion-statistic-text {
+	color: var(--white-secondary);
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+
+/* VÍDEO */
+.trion-video {
+	width: 100%;
+	margin-top: 2rem;
+	position: relative;
+}
+
+.trion-video video {
+	width: 100%;
+	height: auto;
+	border-radius: 1rem;
+	display: block;
+}
+
+/* BOTÃO CTA */
+.trion-action-button {
     width: 100%;
-    height: 100%;
+    margin-top: 2rem;
+	transform: translateX(-50%);
+	padding: 1.2rem 2.5rem;
+	font-size: 1.1rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	color: var(--white-tertiary);
+	background-color: var(--green-primary);
+	border-radius: 0.6rem;
+	cursor: pointer;
+	display: none;
+	z-index: 10;
+	transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.trion-container .trion-logo{
-    width: 8rem;
-    margin: 0 auto;
+.trion-action-button:hover {
+	background-color: #1ad91f;
+	transform: translateX(-50%) scale(1.05);
+	box-shadow: 0 0 20px rgba(31, 228, 38, 0.5);
 }
 
-.trion-container .trion-message{
-    margin-top: 1rem;
-    line-height: 1em;
-    text-shadow: 0px 0px 17px rgba(0, 0, 0, 0.3);
-    color: var(--white-primary);
-    text-align: center;
-    font-size: 2.8rem;
-    font-weight: 600;
+.trion-action-button:active {
+	transform: translateX(-50%) scale(0.97);
 }
 
-.trion-container .trion-message strong{
-    font-weight: 800;
-    color: var(--green-primary);
-}
-
-.trion-container .trion-submessage{
-    margin-top: 3.5rem;
-    font-weight: 600;
-    font-size: 1.2rem;
-    text-align: center;
-    color: var(--white-primary);
-}
-
-.trion-statistic{
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.trion-statistic .trion-statistic-data{
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-}
-
-.trion-statistic .trion-statistic-data img{
-    width: 1.2rem;
-    filter: invert(99%) sepia(7%) saturate(380%) hue-rotate(251deg) brightness(114%) contrast(86%);
-}
-
-.trion-statistic .trion-statistic-data strong{
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--white-primary);
-}
-
-.trion-statistic .trion-statistic-text{
-    font-size: 1.2rem;
-    color: var(--white-secondary);
-    font-weight: 500;
-    align-self: center;
-}
-
-/* Responsividade */
-
-/* Mobile pequeno (< 480px) */
+/* ========================= */
+/* 📱 MOBILE PEQUENO */
+/* ========================= */
 @media (max-width: 479px) {
-    .trion-header .trion-bar .trion-bar-text {
-        padding-left: 1rem;
-        padding-right: 1rem;
-        font-size: 0.85rem;
-        text-align: center;
-    }
-    
-    .trion-container {
-        height: auto;
-        min-height: 100vh;
-        padding: 2rem 0;
-    }
-    
-    .trion-container .trion-logo {
-        width: 5rem;
-    }
-    
-    .trion-container .trion-message {
-        margin-top: 1rem;
-        font-size: 1.8rem;
-        line-height: 1.2em;
-    }
-    
-    .trion-container .trion-submessage {
-        margin-top: 1.5rem;
-        font-size: 0.9rem;
-    }
-    
-    .trion-statistic {
-        margin-top: 1.5rem;
-        flex-direction: column;
-        gap: 0.1rem;
-    }
-    
-    .trion-statistic .trion-statistic-data strong {
-        font-size: 1rem;
-    }
-    
-    .trion-statistic .trion-statistic-text {
-        font-size: 0.9rem;
-    }
+	.trion-logo {
+		width: 5rem;
+	}
+
+	.trion-message {
+		font-size: 1.8rem;
+	}
+
+	.trion-submessage {
+		font-size: 0.95rem;
+		margin-top: 1.2rem;
+	}
+
+	.trion-statistic {
+		flex-direction: column;
+	}
+
+	.trion-statistic-data strong,
+	.trion-statistic-text {
+		font-size: 0.95rem;
+	}
 }
 
-/* Mobile médio (480px - 767px) */
+/* ========================= */
+/* 📱 MOBILE MÉDIO */
+/* ========================= */
 @media (min-width: 480px) and (max-width: 767px) {
-    .trion-header .trion-bar .trion-bar-text {
-        padding-left: 1rem;
-        padding-right: 1rem;
-        font-size: 0.95rem;
-        text-align: center;
-    }
-    
-    .trion-container {
-        height: auto;
-        min-height: 100vh;
-        padding: 2rem 0;
-    }
-    
-    .trion-container .trion-logo {
-        width: 6rem;
-    }
-    
-    .trion-container .trion-message {
-        margin-top: 1rem;
-        font-size: 2.2rem;
-    }
-    
-    .trion-container .trion-submessage {
-        margin-top: 2rem;
-        font-size: 1rem;
-    }
-    
-    .trion-statistic {
-        margin-top: 1.5rem;
-        gap: 0.1rem;
-    }
-    
-    .trion-statistic .trion-statistic-data strong {
-        font-size: 1.1rem;
-    }
-    
-    .trion-statistic .trion-statistic-text {
-        font-size: 1rem;
-    }
+	.trion-logo {
+		width: 6rem;
+	}
+
+	.trion-message {
+		font-size: 2.2rem;
+	}
+
+	.trion-submessage {
+		font-size: 1rem;
+	}
 }
 
-/* Tablet (768px - 1023px) */
+/* ========================= */
+/* 📱 TABLET */
+/* ========================= */
 @media (min-width: 768px) and (max-width: 1023px) {
-    .trion-header .trion-bar .trion-bar-text {
-        padding-left: 1rem;
-        padding-right: 1rem;
-        font-size: 1.1rem;
-        text-align: center;
-    }
-    
-    .trion-container {
-        height: 100vh;
-    }
-    
-    .trion-container .trion-logo {
-        width: 7rem;
-    }
-    
-    .trion-container .trion-message {
-        margin-top: 1rem;
-        font-size: 2.4rem;
-    }
-    
-    .trion-container .trion-submessage {
-        margin-top: 2.5rem;
-        font-size: 1.1rem;
-    }
-    
-    .trion-statistic .trion-statistic-data strong {
-        font-size: 1.15rem;
-    }
+	.trion-message {
+		font-size: 2.4rem;
+	}
+
+	.trion-submessage {
+		font-size: 1.1rem;
+	}
 }
 
-/* Desktop grande (> 1024px) */
+/* ========================= */
+/* 🖥 DESKTOP GRANDE */
+/* ========================= */
 @media (min-width: 1024px) {
-    /* Mantém estilos padrão */
+	.trion-container {
+		margin-top: 5rem;
+	}
 }
