@@ -39,20 +39,34 @@ $(function () {
 	setInterval(updateStatistic, 30000);
 });
 
-// Mostrar botão de ação após 3 minutos do vídeo
+// Vturber Smart Player
+var s = document.createElement("script"); s.src = "https://scripts.converteai.net/df781ff3-69a4-4131-9ca0-6d76c44e355e/players/694ad4017fac75e58d22ecfd/v4/player.js", s.async = !0, document.head.appendChild(s);
+
+// Mostrar botão de ação após 2:30 do vídeo
 $(function () {
-	const $video = $('.trion-video video');
 	const $button = $('.trion-action-button');
 
-	if (!$video.length || !$button.length) return;
+	if (!$button.length) return;
 
-	const CTA_TIME = 2 * 60 + 30; // 3:30 = 210s
+	const CTA_TIME = 1 * 60; // 1 minuto e 0 segundos
 	let shown = false;
 
-	$video.on('timeupdate', function () {
-		if (this.currentTime >= CTA_TIME && !shown) {
-			shown = true;
-			$button.fadeIn(400); // efeito suave
+	// Aguarda o player vturb carregar
+	const checkPlayer = setInterval(function () {
+		if (window.smartplayer && window.smartplayer.instances) {
+			const player = window.smartplayer.instances[0];
+
+			if (player) {
+				clearInterval(checkPlayer);
+
+				// Monitora o tempo do vídeo
+				player.on('timeupdate', function (currentTime) {
+					if (currentTime >= CTA_TIME && !shown) {
+						shown = true;
+						$button.fadeIn(400); // efeito suave
+					}
+				});
+			}
 		}
-	});
+	}, 100);
 });
