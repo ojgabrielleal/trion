@@ -49,7 +49,7 @@ $(function () {
 
 	// Cria o botão dinamicamente (mas não insere ainda)
 	const $button = $('<a>', {
-		href: 'https://go.perfectpay.com.br/PPU38CQ4UN9',
+		href: 'https://t.me/+3_qJRBpgsb85NGVh',
 		target: '_blank',
 		class: 'trion-action-button animate__animated animate__pulse animate__infinite',
 		text: 'Fazer adesão	'
